@@ -1,0 +1,39 @@
+import React from "react";
+import { ShoppingListContext } from "../ShoppingListData";
+import Item from "../ShoppingList/Item";
+
+export default class Store extends React.Component {
+  static contextType = ShoppingListContext;
+
+  state = {
+    nameInput: "",
+  };
+
+  changeInput(nameInput) {
+    this.setState({ nameInput });
+  }
+
+  addItem() {
+    this.context.addItem(this.props.name, this.state.nameInput);
+    this.setState({ nameInput: "" });
+  }
+
+  render() {
+    return (
+      <fieldset>
+        <h2>{this.props.name}</h2>
+        {this.props.items.map((item) => (
+          <Item name={item} />
+        ))}
+        <input
+          type="text"
+          value={this.state.nameInput}
+          onChange={(e) => this.changeInput(e.currentTarget.value)}
+        />{" "}
+        <button type="button" onClick={() => this.addItem()}>
+          Add
+        </button>
+      </fieldset>
+    );
+  }
+}
