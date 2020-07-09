@@ -2,7 +2,7 @@ import React from "react";
 // import { ShoppingListContext } from "./AppContext";
 
 export const ShoppingListContext = React.createContext({
-  shoppingList: { title: "", items: {} },
+  shoppingList: {},
   addStore: (name) => {},
   addItem: (store, name) => {},
   setTitle: (title) => {},
@@ -27,6 +27,7 @@ export class ShoppingListData extends React.Component {
   }
 
   addItem(store, itemName) {
+    console.log(store, itemName);
     const { shoppingList } = this.state;
     shoppingList.items[store].push(itemName);
     this.setState({ shoppingList });
@@ -35,7 +36,7 @@ export class ShoppingListData extends React.Component {
   render() {
     const { shoppingList } = this.state;
 
-    const values = {
+    const value = {
       shoppingList,
       addStore: (name) => this.addStore(name),
       addItem: (store, name) => this.addItem(store, name),
@@ -43,7 +44,7 @@ export class ShoppingListData extends React.Component {
     };
 
     return (
-      <ShoppingListContext.Provider values={values}>
+      <ShoppingListContext.Provider value={value}>
         {this.props.children}
       </ShoppingListContext.Provider>
     );

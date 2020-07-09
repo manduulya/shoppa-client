@@ -3,7 +3,7 @@ import { ShoppingListContext, ShoppingListData } from "../ShoppingListData";
 import Store from "../MyStores/Store";
 
 class NewShoppingList extends React.Component {
-  state = { storeInput: "", listTitle: "" };
+  state = { storeInput: "" };
 
   static contextType = ShoppingListContext;
 
@@ -18,7 +18,7 @@ class NewShoppingList extends React.Component {
   formSubmitted(e) {
     e.preventDefault();
 
-    fetch("yourserver.com/shoppingLists", {
+    fetch("http://localhost:8000/stores/", {
       method: "POST",
       body: { shoppingList: this.context.shoppingList },
     })
@@ -28,7 +28,7 @@ class NewShoppingList extends React.Component {
 
   render() {
     const s = this.context.shoppingList;
-    console.log(this.context);
+
     return (
       <ShoppingListData>
         <form onSubmit={(e) => this.formSubmitted(e)}>
@@ -43,7 +43,7 @@ class NewShoppingList extends React.Component {
           <br />
 
           {Object.keys(s.items).map((store) => (
-            <Store name={store} items={s.items[store]} />
+            <Store key={1} name={store} items={s.items[store]} />
           ))}
 
           <fieldset>
