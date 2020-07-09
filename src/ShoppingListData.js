@@ -1,9 +1,11 @@
 import React from "react";
+// import { ShoppingListContext } from "./AppContext";
 
 export const ShoppingListContext = React.createContext({
-  shoppingList: {},
+  shoppingList: { title: "", items: {} },
   addStore: (name) => {},
   addItem: (store, name) => {},
+  setTitle: (title) => {},
 });
 
 export class ShoppingListData extends React.Component {
@@ -21,7 +23,6 @@ export class ShoppingListData extends React.Component {
   addStore(storeName) {
     const { shoppingList } = this.state;
     shoppingList.items[storeName] = [];
-
     this.setState({ shoppingList });
   }
 
@@ -38,6 +39,7 @@ export class ShoppingListData extends React.Component {
       shoppingList,
       addStore: (name) => this.addStore(name),
       addItem: (store, name) => this.addItem(store, name),
+      setTitle: (title) => this.setTitle(title),
     };
 
     return (

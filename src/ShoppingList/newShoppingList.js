@@ -3,7 +3,7 @@ import { ShoppingListContext, ShoppingListData } from "../ShoppingListData";
 import Store from "../MyStores/Store";
 
 class NewShoppingList extends React.Component {
-  state = { storeInput: "" };
+  state = { storeInput: "", listTitle: "" };
 
   static contextType = ShoppingListContext;
 
@@ -32,7 +32,7 @@ class NewShoppingList extends React.Component {
     return (
       <ShoppingListData>
         <form onSubmit={(e) => this.formSubmitted(e)}>
-          <label for="title">Title: </label>
+          <label htmlFor="title">Title: </label>
           <input
             type="text"
             name="title"
