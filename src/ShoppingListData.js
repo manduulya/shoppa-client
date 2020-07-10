@@ -1,5 +1,4 @@
 import React from "react";
-// import { ShoppingListContext } from "./AppContext";
 
 export const ShoppingListContext = React.createContext({
   shoppingList: {},
@@ -12,31 +11,42 @@ export class ShoppingListData extends React.Component {
   state = {
     shoppingList: {
       title: "",
+      stores: [],
       items: {},
     },
   };
+
   setTitle(title) {
     const { shoppingList } = this.state;
     shoppingList.title = title;
     this.setState({ shoppingList });
   }
-  addStore(storeName) {
+
+  addStore(store) {
+    // {name: 'the name'}
+    if (!store.id) {
+      // store.id = cuid();
+    }
     const { shoppingList } = this.state;
-    shoppingList.items[storeName] = [];
+    shoppingList.stores.push(store);
+    shoppingList.items[store.id] = [];
+
     this.setState({ shoppingList });
   }
 
-  addItem(store, itemName) {
-    console.log(store, itemName);
+  addItem(storeId, item) {
     const { shoppingList } = this.state;
-    shoppingList.items[store].push(itemName);
+    if (!item.id) {
+      // item.id = cuid();
+    }
+    shoppingList.items[storeId].push(item);
     this.setState({ shoppingList });
   }
 
   render() {
     const { shoppingList } = this.state;
 
-    const value = {
+    const values = {
       shoppingList,
       addStore: (name) => this.addStore(name),
       addItem: (store, name) => this.addItem(store, name),
@@ -44,7 +54,7 @@ export class ShoppingListData extends React.Component {
     };
 
     return (
-      <ShoppingListContext.Provider value={value}>
+      <ShoppingListContext.Provider value={values}>
         {this.props.children}
       </ShoppingListContext.Provider>
     );

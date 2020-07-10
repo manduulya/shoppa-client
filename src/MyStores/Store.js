@@ -22,16 +22,20 @@ export default class Store extends React.Component {
     return (
       <fieldset>
         <h2>{this.props.name}</h2>
-        {this.props.items.map((item) => (
-          <Item name={item} />
-        ))}
+        <ul>
+          {this.props.items.map((item, i) => (
+            <li key={i}>
+              <Item name={item} />
+            </li>
+          ))}
+        </ul>
         <input
           type="text"
           value={this.state.nameInput}
           onChange={(e) => this.changeInput(e.currentTarget.value)}
         />{" "}
         <button type="button" onClick={() => this.addItem()}>
-          Add
+          Add Item
         </button>
       </fieldset>
     );
