@@ -34,7 +34,7 @@ class NewShoppingList extends React.Component {
 
   render() {
     const s = this.context.shoppingList;
-    console.log(s.items);
+    let storeKeys = Object.keys(s.items);
     return (
       <form onSubmit={(e) => this.formSubmitted(e)}>
         <label htmlFor="title">Title: </label>
@@ -47,8 +47,8 @@ class NewShoppingList extends React.Component {
         />
         <br />
 
-        {s.stores.map((store, i) => {
-          return <Store key={i} name={store.name} items={s.items[store.id]} />;
+        {storeKeys.map((store, i) => {
+          return <Store key={i} name={store} items={s.items[store]} />;
         })}
         <fieldset>
           <input

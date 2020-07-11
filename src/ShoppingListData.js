@@ -30,7 +30,7 @@ export class ShoppingListData extends React.Component {
     }
     const { shoppingList } = this.state;
     shoppingList.stores.push(store);
-    shoppingList.items[store.id] = [];
+    shoppingList.items[store.name] = [];
 
     this.setState({ shoppingList });
   }
@@ -45,6 +45,7 @@ export class ShoppingListData extends React.Component {
     } else {
       shoppingList.items[storeId] = [item];
     }
+    console.log(shoppingList);
     this.setState({ shoppingList });
   }
 
