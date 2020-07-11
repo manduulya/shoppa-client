@@ -29,7 +29,6 @@ export class ShoppingListData extends React.Component {
       store.id = cuid();
     }
     const { shoppingList } = this.state;
-    console.log(shoppingList);
     shoppingList.stores.push(store);
     shoppingList.items[store.id] = [];
 
@@ -39,9 +38,13 @@ export class ShoppingListData extends React.Component {
   addItem(storeId, item) {
     const { shoppingList } = this.state;
     // if (!item.id) {
-    // item.id = cuid();
+    //   item.id = cuid();
     // }
-    shoppingList.items[storeId].push(item);
+    if (shoppingList.items[storeId]) {
+      shoppingList.items[storeId].push(item);
+    } else {
+      shoppingList.items[storeId] = [item];
+    }
     this.setState({ shoppingList });
   }
 

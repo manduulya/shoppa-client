@@ -35,7 +35,6 @@ class NewShoppingList extends React.Component {
   render() {
     const s = this.context.shoppingList;
     console.log(s.items);
-    console.log(s.stores);
     return (
       <form onSubmit={(e) => this.formSubmitted(e)}>
         <label htmlFor="title">Title: </label>
