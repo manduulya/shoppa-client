@@ -1,4 +1,5 @@
 import React from "react";
+import cuid from "cuid";
 
 export const ShoppingListContext = React.createContext({
   shoppingList: {},
@@ -25,9 +26,10 @@ export class ShoppingListData extends React.Component {
   addStore(store) {
     // {name: 'the name'}
     if (!store.id) {
-      // store.id = cuid();
+      store.id = cuid();
     }
     const { shoppingList } = this.state;
+    console.log(shoppingList);
     shoppingList.stores.push(store);
     shoppingList.items[store.id] = [];
 
@@ -36,9 +38,9 @@ export class ShoppingListData extends React.Component {
 
   addItem(storeId, item) {
     const { shoppingList } = this.state;
-    if (!item.id) {
-      // item.id = cuid();
-    }
+    // if (!item.id) {
+    // item.id = cuid();
+    // }
     shoppingList.items[storeId].push(item);
     this.setState({ shoppingList });
   }
@@ -48,7 +50,7 @@ export class ShoppingListData extends React.Component {
 
     const values = {
       shoppingList,
-      addStore: (name) => this.addStore(name),
+      addStore: (store) => this.addStore(store),
       addItem: (store, name) => this.addItem(store, name),
       setTitle: (title) => this.setTitle(title),
     };

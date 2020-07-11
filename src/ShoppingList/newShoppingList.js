@@ -1,6 +1,7 @@
 import React from "react";
 import { ShoppingListContext } from "../ShoppingListData";
 import Store from "../MyStores/Store";
+import cuid from "cuid";
 
 class NewShoppingList extends React.Component {
   state = { storeInput: "" };
@@ -12,9 +13,11 @@ class NewShoppingList extends React.Component {
   }
 
   addStore() {
-    this.context.addStore(this.state.storeInput);
+    this.context.addStore({
+      name: this.state.storeInput,
+      id: cuid(),
+    });
   }
-
   formSubmitted(e) {
     e.preventDefault();
 
@@ -31,6 +34,8 @@ class NewShoppingList extends React.Component {
 
   render() {
     const s = this.context.shoppingList;
+    console.log(s.items);
+    console.log(s.stores);
     return (
       <form onSubmit={(e) => this.formSubmitted(e)}>
         <label htmlFor="title">Title: </label>
@@ -43,10 +48,9 @@ class NewShoppingList extends React.Component {
         />
         <br />
 
-        {Object.keys(s.items).map((store, i) => (
-          <Store key={i} name={store} items={s.items[store]} />
-        ))}
-
+        {s.stores.map((store, i) => {
+          return <Store key={i} name={store.name} items={s.items[store.id]} />;
+        })}
         <fieldset>
           <input
             type="text"
