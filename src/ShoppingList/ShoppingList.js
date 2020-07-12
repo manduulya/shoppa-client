@@ -7,26 +7,13 @@ export default class ShoppingList extends React.Component {
   state = { shoppingList: {} };
 
   componentDidMount() {
-    fetch(`http://localhost:8000/shoppinglist`)
-      .then((r) => r.json())
-      .then((data) => {
-        this.context.setTitle(data.title);
-        for (const store of data.stores) {
-          const sName = store.name;
-          this.context.addStore(sName);
-          for (const item of data.items[store.id]) {
-            this.context.addItem(sName, item.name);
-          }
-        }
-      })
-      .then((data) => {
-        this.setState({ shoppingList: data });
-      })
-      .catch((error) => this.setState({ error }));
+    this.context.fetchShoppingList();
+    console.log(this.context);
   }
 
   render() {
     const { title, items } = this.context.shoppingList;
+    console.log(this.context.shoppingList);
 
     return (
       <div>
