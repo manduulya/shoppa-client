@@ -20,15 +20,21 @@ class NewShoppingList extends React.Component {
   }
   formSubmitted(e) {
     e.preventDefault();
-
-    fetch("http://localhost:8000/stores", {
+    const s = this.context.shoppingList;
+    console.log(s.title);
+    fetch("http://localhost:8000/shoppinglist", {
       method: "POST",
-      body: { shoppingList: this.context.shoppingList },
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        title: s.title,
+        items: s.items,
+        stores: s.stores,
+      }),
     })
       .then((r) => r.json())
       .then((response) => {
         // ** needs to pass history as props, not doing that yet
-        this.props.history.push(`/lists/${response.shoppingList.id}`);
+        this.props.history.push(`/s-list`);
       });
   }
 

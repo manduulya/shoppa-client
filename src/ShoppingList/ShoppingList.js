@@ -1,36 +1,13 @@
 import React from "react";
 import { ShoppingListContext } from "../ShoppingListData";
+import { Link } from "react-router-dom";
 
 export default class ShoppingList extends React.Component {
   static contextType = ShoppingListContext;
-  state = { error: null };
-
-  render() {
-    const { title, items } = this.context.shoppingList;
-    return (
-      <div>
-        {this.state.error && "some error message"}
-        {this.context.shoppingList && (
-          <>
-            <h1>{title}</h1>
-            {Object.entries(items).map(([store, items]) => (
-              <>
-                <h2>{store}</h2>
-                <ul>
-                  {items.map((i) => (
-                    <li>i</li>
-                  ))}
-                </ul>
-              </>
-            ))}
-          </>
-        )}
-      </div>
-    );
-  }
+  state = { shoppingList: {} };
 
   componentDidMount() {
-    fetch(`yourserverhost/lists/${this.props.id}`)
+    fetch(`http://localhost:8000/shoppinglist`)
       .then((r) => r.json())
       .then((data) => {
         this.context.setTitle(data.title);
@@ -43,5 +20,32 @@ export default class ShoppingList extends React.Component {
         }
       })
       .catch((error) => this.setState({ error }));
+  }
+
+  render() {
+    const { title, items } = this.context.shoppingList;
+
+    return (
+      <div>
+        {this.context.shoppingList && (
+          <>
+            <h1>{title}</h1>
+            {Object.entries(items).map(([store, items]) => (
+              <>
+                <h2>{store}</h2>
+                <ul>
+                  {items.map((name, i) => (
+                    <li key={i}>{name}</li>
+                  ))}
+                </ul>
+                <Link to="/">
+                  <button>Back</button>
+                </Link>
+              </>
+            ))}
+          </>
+        )}
+      </div>
+    );
   }
 }
