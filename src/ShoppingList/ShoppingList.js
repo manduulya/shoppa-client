@@ -19,6 +19,9 @@ export default class ShoppingList extends React.Component {
           }
         }
       })
+      .then((data) => {
+        this.setState({ shoppingList: data });
+      })
       .catch((error) => this.setState({ error }));
   }
 
