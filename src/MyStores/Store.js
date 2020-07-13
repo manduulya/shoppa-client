@@ -1,6 +1,7 @@
 import React from "react";
 import { ShoppingListContext } from "../ShoppingListData";
 import Item from "../ShoppingList/Item";
+import "./Store.css";
 
 export default class Store extends React.Component {
   static contextType = ShoppingListContext;
@@ -20,7 +21,7 @@ export default class Store extends React.Component {
 
   render() {
     return (
-      <fieldset>
+      <fieldset className="Store">
         <h2>{this.props.name}</h2>
         <ul>
           {this.props.items.map((item, i) => (

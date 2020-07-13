@@ -2,6 +2,8 @@ import React from "react";
 import { ShoppingListContext } from "../ShoppingListData";
 import Store from "../MyStores/Store";
 import cuid from "cuid";
+import "./newShoppingList.css";
+import { Link } from "react-router-dom";
 
 class NewShoppingList extends React.Component {
   state = { storeInput: "" };
@@ -42,17 +44,24 @@ class NewShoppingList extends React.Component {
     const s = this.context.shoppingList;
     let storeKeys = Object.keys(s.items);
     return (
-      <form onSubmit={(e) => this.formSubmitted(e)}>
-        <label htmlFor="title">Title: </label>
+      <form onSubmit={(e) => this.formSubmitted(e)} className="newShoppingList">
+        {/* <label htmlFor="title" className="title">
+          Shopping list name:{" "}
+        </label> */}
         <input
+          className="title"
           type="text"
           name="title"
           id="title"
           value={s.title}
+          target="value"
+          placeholder="Shopping list name:"
           onChange={(e) => this.context.setTitle(e.currentTarget.value)}
         />
         <br />
-
+        {/* {this.context.shoppingList.map((store, i) => {
+          return <Store key={i} name={store} items={s.items[store]} />;
+        })} */}
         {storeKeys.map((store, i) => {
           return <Store key={i} name={store} items={s.items[store]} />;
         })}
@@ -60,15 +69,22 @@ class NewShoppingList extends React.Component {
           <input
             type="text"
             name="storeName"
+            className="storeNameInput"
+            placeholder="Store name"
             value={this.state.storeInput}
             onChange={(e) => this.changeInput(e.currentTarget.value)}
           />
           <button type="button" onClick={() => this.addStore()}>
-            Add New Store
+            Add Store
           </button>
         </fieldset>
 
-        <button type="submit">Submit</button>
+        <button type="submit" className="newShoppingListButton">
+          Save my list
+        </button>
+        <Link to="/nav">
+          <button>Back</button>
+        </Link>
       </form>
     );
   }

@@ -8,9 +8,18 @@ module.exports = {
   ],
   shoppingList: [
     {
-      title: "",
-      items: {},
-      stores: [],
+      title: "new list",
+      items: {
+        costco: ["apple", "banana", "orange", "eggs", "milk"],
+      },
+      stores: [
+        {
+          id: 1,
+        },
+        {
+          name: "costco",
+        },
+      ],
     },
   ],
   store: [

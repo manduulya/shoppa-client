@@ -1,14 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./NavPage.css";
 
 function NavPage() {
   return (
-    <main>
+    <main className="NavPage">
       <Link to="/s-list">
-        <button>View shopping lists</button>
+        <button className="NPButton top">View shopping lists</button>
       </Link>
       <Link to="/c-list">
-        <button>Create new list</button>
+        <button className="NPButton bottom">Create new list</button>
       </Link>
     </main>
   );
