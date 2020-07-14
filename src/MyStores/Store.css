@@ -1,0 +1,19 @@
+.Store li {
+  list-style-type: none;
+  background-color: #ffdb77;
+  margin-bottom: 10px;
+  padding: 5px;
+  border-radius: 5px;
+}
+.Store ul {
+  margin: 0;
+  padding: 0;
+}
+.Store h2 {
+  margin: 0;
+  font-size: 1.25em;
+  font-weight: 400;
+}
+.Store input {
+  margin-bottom: 10px;
+}

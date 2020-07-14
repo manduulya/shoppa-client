@@ -1,0 +1,63 @@
+.LandingPage {
+  width: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -moz-transform: translateX(-50%) translateY(-50%);
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+  margin: 0;
+  text-align: center;
+  animation: myFade 1.5s;
+  -moz-animation: myFade 1.5s; /* Firefox */
+  -webkit-animation: myFade 1.5s; /* Safari and Chrome */
+  -o-animation: myFade 1.5s; /* Opera */
+}
+@keyframes myFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-moz-keyframes myFade {
+  /* Firefox */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-webkit-keyframes myFade {
+  /* Safari and Chrome */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@-o-keyframes myFade {
+  /* Opera */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.LPHeader {
+  font-size: 1.5em;
+}
+.LPButton {
+  background-color: #063852;
+  color: #fff;
+  border-style: none;
+  border-radius: 8px;
+  width: 140px;
+  height: 34px;
+  font-weight: 600;
+  text-transform: uppercase;
+}

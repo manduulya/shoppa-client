@@ -1,0 +1,11 @@
+.ShoppingList li {
+  list-style-type: none;
+  background-color: #ffdb77;
+  margin-bottom: 10px;
+  padding: 5px;
+  border-radius: 5px;
+}
+.ShoppingList ul {
+  margin: 0;
+  padding: 0;
+}

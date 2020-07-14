@@ -1,0 +1,38 @@
+.newShoppingList {
+  width: 100%;
+}
+.title {
+  margin: 50px 0 10px 0;
+  font-size: 1.5em;
+  font-weight: 500;
+}
+.newShoppingList fieldset {
+  border-style: none;
+}
+.newShoppingList input {
+  width: 80%;
+  border-style: none;
+  border-bottom: 1px solid black;
+  background: none;
+}
+.newShoppingList input::placeholder {
+  text-align: center;
+  height: 60px;
+  color: #db9501;
+}
+.newShoppingList input[target="value"] {
+  text-align: center;
+}
+.newShoppingList button {
+  background-color: #063852;
+  color: #fff;
+  border-style: none;
+  border-radius: 8px;
+  width: 140px;
+  height: 34px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.storeNameInput {
+  margin-bottom: 10px;
+}
