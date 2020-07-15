@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./ShoppingLists.css";
 
 export default class ShoppingLists extends React.Component {
   state = {
@@ -13,14 +14,16 @@ export default class ShoppingLists extends React.Component {
   }
   render() {
     return (
-      <ul>
-        {" "}
-        {this.state.shoppingLists.map((s) => (
-          <li key={s.id}>
-            <Link to={`/shoppinglist/${s.id}`}>{s.title}</Link>
-          </li>
-        ))}{" "}
-      </ul>
+      <section className="ShoppingLists">
+        <ul>
+          {" "}
+          {this.state.shoppingLists.map((s) => (
+            <li key={s.id}>
+              <Link to={`/shoppinglist/${s.id}`}>{s.title}</Link>
+            </li>
+          ))}{" "}
+        </ul>
+      </section>
     );
   }
 }

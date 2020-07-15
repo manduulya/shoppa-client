@@ -5,7 +5,9 @@ import "./ShoppingList.css";
 
 export default class ShoppingList extends React.Component {
   static contextType = ShoppingListContext;
-  state = { shoppingList: {} };
+  state = {
+    shoppingLists: [],
+  };
 
   componentDidMount() {
     fetch(`http://localhost:8000/shoppinglist/${this.props.id}`)
@@ -25,6 +27,7 @@ export default class ShoppingList extends React.Component {
 
   render() {
     const { title, items, stores } = this.context.shoppingList;
+    console.log(this.context);
 
     return (
       <div className="ShoppingList">
@@ -40,7 +43,7 @@ export default class ShoppingList extends React.Component {
                       <li key={item.id}>{item.name}</li>
                     ))}
                   </ul>
-                  <Link to="/">
+                  <Link to="/s-list">
                     <button>Back</button>
                   </Link>
                 </div>

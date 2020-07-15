@@ -24,10 +24,11 @@ class NewShoppingList extends React.Component {
     e.preventDefault();
     const s = this.context.shoppingList;
     console.log(s.title);
-    fetch("http://localhost:8000/shoppinglist", {
+    fetch("http://localhost:8000/shoppinglists", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
+        id: cuid(),
         title: s.title,
         items: s.items,
         stores: s.stores,
@@ -62,8 +63,8 @@ class NewShoppingList extends React.Component {
         {/* {this.context.shoppingList.map((store, i) => {
           return <Store key={i} name={store} items={s.items[store]} />;
         })} */}
-        {storeKeys.map((store, i) => {
-          return <Store key={i} name={store} items={s.items[store]} />;
+        {storeKeys.map((store) => {
+          return <Store key={store.id} name={store} items={s.items[store]} />;
         })}
         <fieldset>
           <input

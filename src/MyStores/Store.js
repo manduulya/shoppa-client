@@ -17,6 +17,7 @@ export default class Store extends React.Component {
   addItem() {
     this.context.addItem(this.props.name, this.state.nameInput);
     this.setState({ nameInput: "" });
+    console.log(this.props.name);
   }
 
   render() {

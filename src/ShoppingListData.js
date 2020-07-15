@@ -6,13 +6,13 @@ export const ShoppingListContext = React.createContext({
   addStore: (name) => {},
   addItem: (store, name) => {},
   setTitle: (title) => {},
-  fetchShoppingList: (data) => {},
   reset: () => {},
 });
 
 export class ShoppingListData extends React.Component {
   state = {
     shoppingList: {
+      id: null,
       title: "",
       stores: [],
       items: {},
@@ -54,13 +54,13 @@ export class ShoppingListData extends React.Component {
 
   render() {
     const { shoppingList } = this.state;
+    console.log(this.state);
 
     const values = {
       shoppingList,
       addStore: (store) => this.addStore(store),
       addItem: (store, name) => this.addItem(store, name),
       setTitle: (title) => this.setTitle(title),
-      fetchShoppingList: (data) => this.fetchShoppingList(data),
       reset: () => this.reset(),
     };
 

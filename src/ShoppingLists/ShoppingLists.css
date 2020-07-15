@@ -1,0 +1,19 @@
+.ShoppingLists li {
+  list-style: none;
+  padding: 15px;
+  background: #eb5e30;
+  text-transform: uppercase;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.ShoppingLists ul {
+  margin: 50px 0 0 0;
+  padding: 0;
+}
+
+.ShoppingLists ul li a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+}
