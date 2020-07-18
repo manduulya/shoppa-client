@@ -23,6 +23,9 @@ export default class ShoppingLists extends React.Component {
             </li>
           ))}{" "}
         </ul>
+        <Link to="/nav">
+          <button>back</button>
+        </Link>
       </section>
     );
   }

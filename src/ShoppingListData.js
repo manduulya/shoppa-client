@@ -1,12 +1,11 @@
 import React from "react";
-import cuid from "cuid";
 
 export const ShoppingListContext = React.createContext({
   shoppingList: {},
   addStore: (name) => {},
   addItem: (store, name) => {},
   setTitle: (title) => {},
-  reset: () => {},
+  reset: (callBack) => {},
 });
 
 export class ShoppingListData extends React.Component {
@@ -24,13 +23,21 @@ export class ShoppingListData extends React.Component {
     shoppingList.title = title;
     this.setState({ shoppingList });
   };
-  reset = () => {
-    return this.setState({ shoppingList: {} });
+  reset = (callBack) => {
+    console.log("hi");
+    this.setState(
+      {
+        shoppingList: {
+          stores: [],
+          items: {},
+          title: "",
+          id: null,
+        },
+      },
+      callBack
+    );
   };
   addStore = (store) => {
-    if (!store.id) {
-      store.id = cuid();
-    }
     const { shoppingList } = this.state;
     shoppingList.stores.push(store);
     shoppingList.items[store.id] = [];
@@ -48,7 +55,6 @@ export class ShoppingListData extends React.Component {
     } else {
       shoppingList.items[storeId] = [item];
     }
-    console.log(shoppingList);
     this.setState({ shoppingList });
   };
 
@@ -61,7 +67,7 @@ export class ShoppingListData extends React.Component {
       addStore: (store) => this.addStore(store),
       addItem: (store, name) => this.addItem(store, name),
       setTitle: (title) => this.setTitle(title),
-      reset: () => this.reset(),
+      reset: (callBack) => this.reset(callBack),
     };
 
     return (

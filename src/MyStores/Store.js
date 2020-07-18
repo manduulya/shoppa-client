@@ -15,9 +15,10 @@ export default class Store extends React.Component {
   }
 
   addItem() {
-    this.context.addItem(this.props.name, this.state.nameInput);
+    const item = { name: this.state.nameInput };
+    this.context.addItem(this.props.id, item);
     this.setState({ nameInput: "" });
-    console.log(this.props.name);
+    console.log(item);
   }
 
   render() {
@@ -25,9 +26,9 @@ export default class Store extends React.Component {
       <fieldset className="Store">
         <h2>{this.props.name}</h2>
         <ul>
-          {this.props.items.map((item, i) => (
-            <li key={i}>
-              <Item name={item} />
+          {this.props.items.map((item) => (
+            <li key={item.id}>
+              <Item name={item.name} />
             </li>
           ))}
         </ul>

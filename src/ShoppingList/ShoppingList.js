@@ -13,21 +13,21 @@ export default class ShoppingList extends React.Component {
     fetch(`http://localhost:8000/shoppinglist/${this.props.id}`)
       .then((r) => r.json())
       .then((data) => {
-        console.log(data);
-        this.context.setTitle(data.title);
-        for (const store of data.stores) {
-          this.context.addStore(store);
-          for (const item of data.items[store.id]) {
-            this.context.addItem(store.id, item);
+        this.context.reset(() => {
+          this.context.setTitle(data.title);
+          for (const store of data.stores) {
+            this.context.addStore(store);
+            for (const item of data.items[store.id]) {
+              this.context.addItem(store.id, item);
+            }
           }
-        }
+        });
       })
       .catch((error) => this.setState({ error }));
   }
 
   render() {
     const { title, items, stores } = this.context.shoppingList;
-    console.log(this.context);
 
     return (
       <div className="ShoppingList">

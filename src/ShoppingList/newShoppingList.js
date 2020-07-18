@@ -1,7 +1,7 @@
 import React from "react";
 import { ShoppingListContext } from "../ShoppingListData";
 import Store from "../MyStores/Store";
-import cuid from "cuid";
+// import cuid from "cuid";
 import "./newShoppingList.css";
 import { Link } from "react-router-dom";
 
@@ -17,7 +17,7 @@ class NewShoppingList extends React.Component {
   addStore() {
     this.context.addStore({
       name: this.state.storeInput,
-      id: cuid(),
+      // id: cuid(),
     });
   }
   formSubmitted(e) {
@@ -28,7 +28,6 @@ class NewShoppingList extends React.Component {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({
-        id: cuid(),
         title: s.title,
         items: s.items,
         stores: s.stores,
@@ -43,7 +42,6 @@ class NewShoppingList extends React.Component {
 
   render() {
     const s = this.context.shoppingList;
-    let storeKeys = Object.keys(s.items);
     return (
       <form onSubmit={(e) => this.formSubmitted(e)} className="newShoppingList">
         {/* <label htmlFor="title" className="title">
@@ -63,8 +61,15 @@ class NewShoppingList extends React.Component {
         {/* {this.context.shoppingList.map((store, i) => {
           return <Store key={i} name={store} items={s.items[store]} />;
         })} */}
-        {storeKeys.map((store) => {
-          return <Store key={store.id} name={store} items={s.items[store]} />;
+        {s.stores.map((store) => {
+          return (
+            <Store
+              key={store.id}
+              id={store.id}
+              name={store.name}
+              items={s.items[store.id]}
+            />
+          );
         })}
         <fieldset>
           <input
