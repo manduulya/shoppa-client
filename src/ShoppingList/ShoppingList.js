@@ -2,6 +2,7 @@ import React from "react";
 import { ShoppingListContext } from "../ShoppingListData";
 import { Link } from "react-router-dom";
 import "./ShoppingList.css";
+import config from "../config";
 
 export default class ShoppingList extends React.Component {
   static contextType = ShoppingListContext;
@@ -10,7 +11,7 @@ export default class ShoppingList extends React.Component {
   };
 
   componentDidMount() {
-    fetch(`http://localhost:8000/shoppinglist/${this.props.id}`)
+    fetch(`${config.API_HOST}shoppinglist/${this.props.id}`)
       .then((r) => r.json())
       .then((data) => {
         console.log(data);

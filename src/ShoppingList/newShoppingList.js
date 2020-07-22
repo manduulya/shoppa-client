@@ -1,7 +1,7 @@
 import React from "react";
 import { ShoppingListContext } from "../ShoppingListData";
 import Store from "../MyStores/Store";
-// import cuid from "cuid";
+import config from "../config";
 import "./newShoppingList.css";
 import { Link } from "react-router-dom";
 
@@ -22,7 +22,7 @@ class NewShoppingList extends React.Component {
   formSubmitted(e) {
     e.preventDefault();
     const s = this.context.shoppingList;
-    fetch("http://localhost:8000/shoppinglists", {
+    fetch(`${config.API_HOST}shoppinglists`, {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify({

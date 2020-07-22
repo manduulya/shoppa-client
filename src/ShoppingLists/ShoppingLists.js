@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./ShoppingLists.css";
+import config from "../config";
 
 export default class ShoppingLists extends React.Component {
   state = {
@@ -8,7 +9,7 @@ export default class ShoppingLists extends React.Component {
   };
 
   componentDidMount() {
-    fetch(`http://localhost:8000/shoppinglists`)
+    fetch(`${config.API_HOST}shoppinglists`)
       .then((r) => r.json())
       .then((data) => this.setState({ shoppingLists: data }));
   }
