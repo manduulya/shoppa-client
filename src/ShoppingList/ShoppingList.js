@@ -13,6 +13,7 @@ export default class ShoppingList extends React.Component {
     fetch(`http://localhost:8000/shoppinglist/${this.props.id}`)
       .then((r) => r.json())
       .then((data) => {
+        console.log(data);
         this.context.reset(() => {
           this.context.setTitle(data.title);
           for (const store of data.stores) {
@@ -25,6 +26,32 @@ export default class ShoppingList extends React.Component {
       })
       .catch((error) => this.setState({ error }));
   }
+  // componentDidMount() {
+  //   const fetchShoppingList = fetch(
+  //     `http://localhost:8000/shoppinglist/${this.props.id}`
+  //   );
+  //   const fetchItems = fetch(`http://localhost:8000/item/${this.props.id}`);
+  //   const fetchStores = fetch(`http://localhost:8000/store/${this.props.id}`);
+
+  //   Promise.all([fetchShoppingList, fetchItems, fetchStores])
+  //     .then((r) => {
+  //       return Promise.all(r.map((res) => res.json()));
+  //     })
+  //     .then(([shoppinglist, items, stores]) => {
+  //       console.log(shoppinglist);
+  //       console.log(items);
+  //       console.log(stores);
+  //       this.context.reset(() => {
+  //         this.context.setTitle(shoppinglist.title);
+  //         for (const store of stores) {
+  //           this.context.addStore(store);
+  //           for (const item of items[store.id]) {
+  //             this.context.addItem(store.id, item);
+  //           }
+  //         }
+  //       });
+  //     });
+  // }
 
   render() {
     const { title, items, stores } = this.context.shoppingList;

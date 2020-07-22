@@ -17,13 +17,11 @@ class NewShoppingList extends React.Component {
   addStore() {
     this.context.addStore({
       name: this.state.storeInput,
-      // id: cuid(),
     });
   }
   formSubmitted(e) {
     e.preventDefault();
     const s = this.context.shoppingList;
-    console.log(s.title);
     fetch("http://localhost:8000/shoppinglists", {
       method: "POST",
       headers: { "content-type": "application/json" },

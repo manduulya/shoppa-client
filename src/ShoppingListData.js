@@ -24,7 +24,6 @@ export class ShoppingListData extends React.Component {
     this.setState({ shoppingList });
   };
   reset = (callBack) => {
-    console.log("hi");
     this.setState(
       {
         shoppingList: {
@@ -60,8 +59,6 @@ export class ShoppingListData extends React.Component {
 
   render() {
     const { shoppingList } = this.state;
-    console.log(this.state);
-
     const values = {
       shoppingList,
       addStore: (store) => this.addStore(store),
