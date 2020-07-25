@@ -53,7 +53,7 @@ export default class ShoppingList extends React.Component {
           )}
         </div>
         <Link to="/s-list">
-          <button>Back</button>
+          <button className="newShoppingListButton">Back</button>
         </Link>
       </section>
     );
