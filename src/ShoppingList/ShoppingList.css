@@ -18,6 +18,19 @@
   color: #fff;
 }
 .ShoppingList h2 {
-  color: #fff;
+  color: #063852;
   font-size: 1.25em;
+  margin: 0 0 15px 0;
+}
+.ShoppingListBox {
+  background-color: #e8e8e8;
+  margin-bottom: 15px;
+  border-radius: 15px;
+  padding: 20px;
+}
+@media only screen and (min-width: 451px) {
+  .ShoppingListContainer {
+    width: 60%;
+    margin: 0 auto;
+  }
 }

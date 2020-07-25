@@ -40,7 +40,7 @@ export default class ShoppingList extends React.Component {
               {/*Mapping through Stores and rendering Stores in the component*/}
               {stores &&
                 stores.map((store) => (
-                  <div key={store.id}>
+                  <div key={store.id} className="ShoppingListBox">
                     <h2>From: {store.name}</h2>
                     <ul>
                       {items[store.id].map((item) => (

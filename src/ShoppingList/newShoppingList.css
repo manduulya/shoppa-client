@@ -64,3 +64,9 @@
   background-color: #fff;
   color: #063852;
 }
+@media only screen and (min-width: 451px) {
+  .newShoppingListContainer {
+    width: 60%;
+    margin: 0 auto;
+  }
+}
