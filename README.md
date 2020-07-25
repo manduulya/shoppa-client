@@ -5,7 +5,7 @@ Shoppa app is basically created for my own family to create shopping list that w
 ## LINK TO LIVE APP
 
 ```
-[Shoppa-App](https://shoppa-client.vercel.app/)
+https://shoppa-client.manduulya.vercel.app/
 ```
 
 ### TECHNOLOGIES USED
