@@ -78,7 +78,6 @@ class NewShoppingList extends React.Component {
           <br />
           {/*Mapping through Stores and rendering the Store component */}
           {s.stores.map((store) => {
-            console.log(s.stores);
             return (
               <Store
                 key={store.id}
