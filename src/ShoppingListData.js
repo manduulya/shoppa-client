@@ -53,9 +53,6 @@ export class ShoppingListData extends React.Component {
 
   addItem = (storeId, item) => {
     const { shoppingList } = this.state;
-    // if (!item.id) {
-    //   item.id = cuid();
-    // }
     if (shoppingList.items[storeId]) {
       shoppingList.items[storeId].push(item);
     } else {

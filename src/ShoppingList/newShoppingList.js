@@ -70,6 +70,7 @@ class NewShoppingList extends React.Component {
           />
           <br />
           {s.stores.map((store) => {
+            console.log(s.stores);
             return (
               <Store
                 key={store.id}
