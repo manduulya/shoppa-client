@@ -8,6 +8,8 @@ import NavPage from "../NavPage/NavPage";
 import Item from "../ShoppingList/Item";
 import NewShoppingList from "../ShoppingList/newShoppingList";
 import ShoppingList from "../ShoppingList/ShoppingList";
+import { ShoppingListData } from "../ShoppingListData";
+import ShoppingLists from "../ShoppingLists/ShoppingLists";
 
 it("renders without crashing", () => {
   const div = document.createElement("div");
@@ -62,9 +64,11 @@ it("renders without crashing", () => {
 it("renders without crashing", () => {
   const div = document.createElement("div");
   ReactDOM.render(
-    <BrowserRouter>
-      <NewShoppingList stores={[{}]} />
-    </BrowserRouter>,
+    <ShoppingListData>
+      <BrowserRouter>
+        <NewShoppingList stores={[{}]} />
+      </BrowserRouter>
+    </ShoppingListData>,
     div
   );
   ReactDOM.unmountComponentAtNode(div);
@@ -74,6 +78,16 @@ it("renders without crashing", () => {
   ReactDOM.render(
     <BrowserRouter>
       <ShoppingList />
+    </BrowserRouter>,
+    div
+  );
+  ReactDOM.unmountComponentAtNode(div);
+});
+it("renders without crashing", () => {
+  const div = document.createElement("div");
+  ReactDOM.render(
+    <BrowserRouter>
+      <ShoppingLists />
     </BrowserRouter>,
     div
   );

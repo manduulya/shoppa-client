@@ -9,11 +9,12 @@ export default class ShoppingList extends React.Component {
   state = {
     shoppingLists: [],
   };
-
+  //fetching GET request by ID
   componentDidMount() {
     fetch(`${config.API_HOST}shoppinglist/${this.props.id}`)
       .then((r) => r.json())
       .then((data) => {
+        //resetting the component before each GET request
         this.context.reset(() => {
           this.context.setTitle(data.title);
           for (const store of data.stores) {
@@ -36,6 +37,7 @@ export default class ShoppingList extends React.Component {
           {this.context.shoppingList && (
             <>
               <h1>For: {title}</h1>
+              {/*Mapping through Stores and rendering Stores in the component*/}
               {stores &&
                 stores.map((store) => (
                   <div key={store.id}>

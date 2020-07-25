@@ -12,15 +12,16 @@ export default class Store extends React.Component {
   state = {
     nameInput: "",
   };
-
+  //Changing store name and setState
   changeInput(nameInput) {
     this.setState({ nameInput });
   }
-
+  //adding item function to
   addItem() {
     if (!this.state.nameInput.trim()) return;
     const item = { name: this.state.nameInput, id: cuid() };
     this.context.addItem(this.props.id, item);
+    //resetting the input after submit
     this.setState({ nameInput: "" });
   }
 
@@ -37,6 +38,7 @@ export default class Store extends React.Component {
           </button>
         </h2>
         <ul>
+          {/* mapping through items and rendering item component*/}
           {this.props.items.map((item) => (
             <li key={item.id} className="flex hover">
               <Item name={item.name} />

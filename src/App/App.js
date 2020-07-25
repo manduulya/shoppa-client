@@ -11,8 +11,10 @@ import "./App.css";
 function App() {
   return (
     <Router>
+      {/*React context wrapper*/}
       <ShoppingListData>
         <main>
+          {/*Switch between pages*/}
           <Switch>
             <Route exact path="/" component={LandingPage} />
             <Route exact path="/nav" component={NavPage} />

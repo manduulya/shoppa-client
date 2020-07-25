@@ -10,28 +10,35 @@ class NewShoppingList extends React.Component {
   state = { storeInput: "" };
 
   static contextType = ShoppingListContext;
-
+  //Changing storeInput state from the user input
   changeInput(storeInput) {
     this.setState({ storeInput });
   }
-
+  //adding store to the context
   addStore() {
     if (!this.state.storeInput.trim()) return;
     this.context.addStore({
+      //creating ID
       id: cuid(),
+      //adding store name
       name: this.state.storeInput,
     });
+    //resetting the input after submit
     this.changeInput("");
   }
+  //resetting the form before render
   componentDidMount() {
     this.context.reset();
   }
+  //Form submitting function
   formSubmitted(e) {
     e.preventDefault();
     const s = this.context.shoppingList;
+    //fetching POST request
     fetch(`${config.API_HOST}shoppinglists`, {
       method: "POST",
       headers: { "content-type": "application/json" },
+      //convert the input to JSON
       body: JSON.stringify({
         title: s.title,
         items: s.items,
@@ -40,7 +47,7 @@ class NewShoppingList extends React.Component {
     })
       .then((r) => r.json())
       .then((response) => {
-        // ** needs to pass history as props, not doing that yet
+        //directing to result page after POST request
         this.props.history.push(`/s-list`);
       });
   }
@@ -69,6 +76,7 @@ class NewShoppingList extends React.Component {
             required
           />
           <br />
+          {/*Mapping through Stores and rendering the Store component */}
           {s.stores.map((store) => {
             console.log(s.stores);
             return (
