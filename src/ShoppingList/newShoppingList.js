@@ -4,6 +4,7 @@ import Store from "../MyStores/Store";
 import config from "../config";
 import "./newShoppingList.css";
 import { Link } from "react-router-dom";
+import cuid from "cuid";
 
 class NewShoppingList extends React.Component {
   state = { storeInput: "" };
@@ -15,9 +16,15 @@ class NewShoppingList extends React.Component {
   }
 
   addStore() {
+    if (!this.state.storeInput.trim()) return;
     this.context.addStore({
+      id: cuid(),
       name: this.state.storeInput,
     });
+    this.changeInput("");
+  }
+  componentDidMount() {
+    this.context.reset();
   }
   formSubmitted(e) {
     e.preventDefault();
@@ -41,55 +48,65 @@ class NewShoppingList extends React.Component {
   render() {
     const s = this.context.shoppingList;
     return (
-      <form onSubmit={(e) => this.formSubmitted(e)} className="newShoppingList">
-        {/* <label htmlFor="title" className="title">
-          Shopping list name:{" "}
-        </label> */}
-        <input
-          className="title"
-          type="text"
-          name="title"
-          id="title"
-          value={s.title}
-          target="value"
-          placeholder="Shopping list name:"
-          onChange={(e) => this.context.setTitle(e.currentTarget.value)}
-        />
-        <br />
-        {/* {this.context.shoppingList.map((store, i) => {
-          return <Store key={i} name={store} items={s.items[store]} />;
-        })} */}
-        {s.stores.map((store) => {
-          return (
-            <Store
-              key={store.id}
-              id={store.id}
-              name={store.name}
-              items={s.items[store.id]}
-            />
-          );
-        })}
-        <fieldset>
+      <section className="newShoppingListContainer">
+        <form
+          onSubmit={(e) => this.formSubmitted(e)}
+          className="newShoppingList"
+        >
+          <label htmlFor="title" className="titleLabel">
+            Shopping list name:{" "}
+          </label>
+          <br />
           <input
+            className="title"
             type="text"
-            name="storeName"
-            className="storeNameInput"
-            placeholder="Store name"
-            value={this.state.storeInput}
-            onChange={(e) => this.changeInput(e.currentTarget.value)}
+            name="title"
+            id="title"
+            value={s.title}
+            target="value"
+            placeholder="Enter a list name:"
+            onChange={(e) => this.context.setTitle(e.currentTarget.value)}
+            required
           />
-          <button type="button" onClick={() => this.addStore()}>
-            Add Store
-          </button>
-        </fieldset>
+          <br />
+          {s.stores.map((store) => {
+            return (
+              <Store
+                key={store.id}
+                id={store.id}
+                name={store.name}
+                items={s.items[store.id]}
+              />
+            );
+          })}
+          <fieldset>
+            <input
+              type="text"
+              name="storeName"
+              className="storeNameInput"
+              placeholder="Enter a store name"
+              value={this.state.storeInput}
+              onChange={(e) => this.changeInput(e.currentTarget.value)}
+              required
+            />
+            <br />
+            <button
+              type="button"
+              className="newShoppingListButton"
+              onClick={() => this.addStore()}
+            >
+              Add Store
+            </button>
+          </fieldset>
 
-        <button type="submit" className="newShoppingListButton">
-          Save my list
-        </button>
-        <Link to="/nav">
-          <button>Back</button>
-        </Link>
-      </form>
+          <button type="submit" className="newShoppingListButton">
+            Submit
+          </button>
+          <Link to="/nav">
+            <button className="newShoppingListButton grey">Back</button>
+          </Link>
+        </form>
+      </section>
     );
   }
 }

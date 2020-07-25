@@ -9,3 +9,15 @@
   margin: 0;
   padding: 0;
 }
+.ShoppingListContainer {
+  width: 100%;
+  height: 100vh;
+}
+.ShoppingList h1 {
+  font-size: 1.5em;
+  color: #fff;
+}
+.ShoppingList h2 {
+  color: #fff;
+  font-size: 1.25em;
+}

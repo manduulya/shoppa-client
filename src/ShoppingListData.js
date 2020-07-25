@@ -6,6 +6,8 @@ export const ShoppingListContext = React.createContext({
   addItem: (store, name) => {},
   setTitle: (title) => {},
   reset: (callBack) => {},
+  removeItem: (storeId, itemId) => {},
+  removeStore: (storeId) => {},
 });
 
 export class ShoppingListData extends React.Component {
@@ -40,7 +42,12 @@ export class ShoppingListData extends React.Component {
     const { shoppingList } = this.state;
     shoppingList.stores.push(store);
     shoppingList.items[store.id] = [];
-
+    this.setState({ shoppingList });
+  };
+  removeStore = (storeId) => {
+    const { shoppingList } = this.state;
+    shoppingList.stores = shoppingList.stores.filter((s) => s.id !== storeId);
+    delete shoppingList.items[storeId];
     this.setState({ shoppingList });
   };
 
@@ -56,6 +63,13 @@ export class ShoppingListData extends React.Component {
     }
     this.setState({ shoppingList });
   };
+  removeItem = (storeId, itemId) => {
+    const { shoppingList } = this.state;
+    shoppingList.items[storeId] = shoppingList.items[storeId].filter(
+      (i) => i.id !== itemId
+    );
+    this.setState({ shoppingList });
+  };
 
   render() {
     const { shoppingList } = this.state;
@@ -65,6 +79,8 @@ export class ShoppingListData extends React.Component {
       addItem: (store, name) => this.addItem(store, name),
       setTitle: (title) => this.setTitle(title),
       reset: (callBack) => this.reset(callBack),
+      removeItem: this.removeItem,
+      removeStore: this.removeStore,
     };
 
     return (

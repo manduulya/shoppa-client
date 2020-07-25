@@ -56,14 +56,15 @@
   height: 30vh;
   margin: 10px 0 10px 0;
   border-style: none;
-  border-radius: 15px;
+  border-radius: 40px;
   font-size: 1em;
   text-transform: uppercase;
   color: #fff;
+  cursor: pointer;
 }
 .top {
-  background-color: #063852;
+  background-color: #061283;
 }
 .bottom {
-  background-color: #5c8f22;
+  background-color: #fd3c3c;
 }

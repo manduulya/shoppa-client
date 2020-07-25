@@ -1,3 +1,10 @@
+.Store {
+  background-color: #e8e8e8;
+  margin-bottom: 15px;
+  border-radius: 15px;
+  padding: 20px;
+}
+
 .Store li {
   list-style-type: none;
   background-color: #ffdb77;
@@ -10,10 +17,27 @@
   padding: 0;
 }
 .Store h2 {
-  margin: 0;
+  margin: 0 0 15px 0;
   font-size: 1.25em;
   font-weight: 400;
+  color: #063852;
 }
 .Store input {
   margin-bottom: 10px;
+}
+.fontAwesome {
+  border-style: none;
+  background: none;
+  color: #8a8a8a;
+  cursor: pointer;
+}
+.fontAwesome:hover {
+  color: #454545;
+}
+.flex {
+  display: flex;
+  justify-content: space-between;
+}
+.hover:hover {
+  background-color: #ffcf4d;
 }

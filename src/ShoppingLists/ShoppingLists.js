@@ -15,18 +15,20 @@ export default class ShoppingLists extends React.Component {
   }
   render() {
     return (
-      <section className="ShoppingLists">
-        <ul>
-          {" "}
-          {this.state.shoppingLists.map((s) => (
-            <li key={s.id}>
-              <Link to={`/shoppinglist/${s.id}`}>{s.title}</Link>
-            </li>
-          ))}{" "}
-        </ul>
-        <Link to="/nav">
-          <button>back</button>
-        </Link>
+      <section className="shoppingListsContainer">
+        <main className="ShoppingLists">
+          <ul>
+            {" "}
+            {this.state.shoppingLists.map((s) => (
+              <li key={s.id}>
+                <Link to={`/shoppinglist/${s.id}`}>{s.title}</Link>
+              </li>
+            ))}{" "}
+          </ul>
+          <Link to="/nav">
+            <button>back</button>
+          </Link>
+        </main>
       </section>
     );
   }

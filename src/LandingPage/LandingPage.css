@@ -1,3 +1,7 @@
+.LandingPageContainer {
+  width: 100%;
+  height: 100vh;
+}
 .LandingPage {
   width: 80%;
   position: absolute;
@@ -12,6 +16,7 @@
   -moz-animation: myFade 1.5s; /* Firefox */
   -webkit-animation: myFade 1.5s; /* Safari and Chrome */
   -o-animation: myFade 1.5s; /* Opera */
+  color: #fff;
 }
 @keyframes myFade {
   from {
@@ -50,14 +55,33 @@
 }
 .LPHeader {
   font-size: 1.5em;
+  text-transform: uppercase;
+  font-weight: normal;
+  margin: 50px 0 50px 0;
 }
 .LPButton {
-  background-color: #063852;
-  color: #fff;
+  margin-top: 10px;
+  background-color: #fff;
+  color: #063852;
   border-style: none;
-  border-radius: 8px;
-  width: 140px;
+  border-radius: 50px;
+  width: 160px;
   height: 34px;
   font-weight: 600;
   text-transform: uppercase;
+  cursor: pointer;
+}
+.LPButton:hover {
+  background-color: #063852;
+  color: #fff;
+}
+.shoppa_logo {
+  width: 60%;
+  margin-bottom: 50px;
+}
+@media only screen and (min-width: 451px) {
+  .shoppa_logo {
+    width: 20%;
+    margin-bottom: 35px;
+  }
 }
