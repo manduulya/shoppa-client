@@ -95,7 +95,6 @@ class NewShoppingList extends React.Component {
               placeholder="Enter a store name"
               value={this.state.storeInput}
               onChange={(e) => this.changeInput(e.currentTarget.value)}
-              required
             />
             <br />
             <button
