@@ -6,6 +6,20 @@ import "./newShoppingList.css";
 import { Link } from "react-router-dom";
 import cuid from "cuid";
 
+function fillShoppingList(data, context) {
+  context.reset(() => {
+    // needs to be implemented, same way as setTitle
+    context.setId(data.id);
+    context.setTitle(data.title);
+    for (const store of data.stores || []) {
+      context.addStore(store);
+      for (const item of data.items[store.id] || []) {
+        context.addItem(store.id, item);
+      }
+    }
+  });
+}
+
 class NewShoppingList extends React.Component {
   state = { storeInput: "" };
 
@@ -16,19 +30,44 @@ class NewShoppingList extends React.Component {
   }
   //adding store to the context
   addStore() {
-    if (!this.state.storeInput.trim()) return;
-    this.context.addStore({
-      //creating ID
-      id: cuid(),
-      //adding store name
-      name: this.state.storeInput,
-    });
-    //resetting the input after submit
+    const name = this.state.storeInput.trim();
+    if (!name) return;
+    if ("id" in this.props.match.params) {
+      fetch(
+        `${config.API_HOST}stores`, // POST /stores (create a new store) this should respond with the store that was created
+        {
+          method: "POST",
+          body: JSON.stringify({
+            shoppingListId: this.props,
+            name,
+          }),
+        }
+      )
+        .then((r) => r.json())
+        .then((store) => this.context.addStore(store));
+    } else {
+      this.context.addStore({
+        id: cuid(),
+        name: this.state.storeInput,
+      });
+    }
+
     this.changeInput("");
   }
   //resetting the form before render
   componentDidMount() {
-    this.context.reset();
+    const cb =
+      this.props.match.params.id &&
+      (() => {
+        fetch(`${config.API_HOST}shoppinglist/` + this.props.match.params.id)
+          .then((r) => r.json())
+          .then((shoppingList) => {
+            // ... fill it the same way as in SHoppingList
+            fillShoppingList(shoppingList, this.context);
+          });
+      });
+
+    this.context.reset(cb);
   }
   //Form submitting function
   formSubmitted(e) {
@@ -54,65 +93,71 @@ class NewShoppingList extends React.Component {
 
   render() {
     const s = this.context.shoppingList;
+    console.log(s);
+    const edit = "id" in this.props.match.params;
+    const renderForm = !edit || this.context.shoppingList.id;
     return (
       <section className="newShoppingListContainer">
-        <form
-          onSubmit={(e) => this.formSubmitted(e)}
-          className="newShoppingList"
-        >
-          <label htmlFor="title" className="titleLabel">
-            Shopping list name:{" "}
-          </label>
-          <br />
-          <input
-            className="title"
-            type="text"
-            name="title"
-            id="title"
-            value={s.title}
-            target="value"
-            placeholder="Enter a list name:"
-            onChange={(e) => this.context.setTitle(e.currentTarget.value)}
-            required
-          />
-          <br />
-          {/*Mapping through Stores and rendering the Store component */}
-          {s.stores.map((store) => {
-            return (
-              <Store
-                key={store.id}
-                id={store.id}
-                name={store.name}
-                items={s.items[store.id]}
-              />
-            );
-          })}
-          <fieldset>
+        {renderForm && (
+          <form
+            onSubmit={(e) => this.formSubmitted(e)}
+            className="newShoppingList"
+          >
+            <label htmlFor="title" className="titleLabel">
+              Shopping list name:{" "}
+            </label>
+            <br />
             <input
+              className="title"
               type="text"
-              name="storeName"
-              className="storeNameInput"
-              placeholder="Enter a store name"
-              value={this.state.storeInput}
-              onChange={(e) => this.changeInput(e.currentTarget.value)}
+              name="title"
+              id="title"
+              value={s.title}
+              target="value"
+              placeholder="Enter a list name:"
+              onChange={(e) => this.context.setTitle(e.currentTarget.value)}
+              required
             />
             <br />
-            <button
-              type="button"
-              className="newShoppingListButton"
-              onClick={() => this.addStore()}
-            >
-              Add Store
-            </button>
-          </fieldset>
+            {/*Mapping through Stores and rendering the Store component */}
+            {s.stores.map((store) => {
+              return (
+                <Store
+                  key={store.id}
+                  id={store.id}
+                  name={store.name}
+                  items={s.items[store.id]}
+                  edit={!!this.props.edit}
+                />
+              );
+            })}
+            <fieldset>
+              <input
+                type="text"
+                name="storeName"
+                className="storeNameInput"
+                placeholder="Enter a store name"
+                value={this.state.storeInput}
+                onChange={(e) => this.changeInput(e.currentTarget.value)}
+              />
+              <br />
+              <button
+                type="button"
+                className="newShoppingListButton"
+                onClick={() => this.addStore()}
+              >
+                Add Store
+              </button>
+            </fieldset>
 
-          <button type="submit" className="newShoppingListButton">
-            Submit
-          </button>
-          <Link to="/nav">
-            <button className="newShoppingListButton grey">Back</button>
-          </Link>
-        </form>
+            <button type="submit" className="newShoppingListButton">
+              Submit
+            </button>
+            <Link to="/nav">
+              <button className="newShoppingListButton grey">Back</button>
+            </Link>
+          </form>
+        )}
       </section>
     );
   }

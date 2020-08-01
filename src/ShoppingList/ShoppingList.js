@@ -16,10 +16,11 @@ export default class ShoppingList extends React.Component {
       .then((data) => {
         //resetting the component before each GET request
         this.context.reset(() => {
+          this.context.setId(Number(data.id));
           this.context.setTitle(data.title);
-          for (const store of data.stores) {
+          for (const store of data.stores || []) {
             this.context.addStore(store);
-            for (const item of data.items[store.id]) {
+            for (const item of data.items[store.id] || []) {
               this.context.addItem(store.id, item);
             }
           }
@@ -30,7 +31,7 @@ export default class ShoppingList extends React.Component {
 
   render() {
     const { title, items, stores } = this.context.shoppingList;
-
+    console.log(stores);
     return (
       <section className="ShoppingListContainer">
         <div className="ShoppingList">
@@ -54,6 +55,9 @@ export default class ShoppingList extends React.Component {
         </div>
         <Link to="/s-list">
           <button className="newShoppingListButton">Back</button>
+        </Link>
+        <Link to={`/edit/${this.props.id}`}>
+          <button className="newShoppingListButton">Edit</button>
         </Link>
       </section>
     );

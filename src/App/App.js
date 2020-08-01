@@ -22,6 +22,13 @@ function App() {
             <Route exact path="/c-list" component={NewShoppingList} />
             <Route
               exact
+              path="/edit/:id"
+              render={(routeProps) => (
+                <NewShoppingList {...routeProps} edit={true} />
+              )}
+            />
+            <Route
+              exact
               path="/shoppinglist/:id"
               render={(r) => <ShoppingList id={r.match.params.id} />}
             />

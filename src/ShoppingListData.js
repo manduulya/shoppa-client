@@ -8,6 +8,7 @@ export const ShoppingListContext = React.createContext({
   reset: (callBack) => {},
   removeItem: (storeId, itemId) => {},
   removeStore: (storeId) => {},
+  setId: (id) => {},
 });
 
 export class ShoppingListData extends React.Component {
@@ -23,6 +24,11 @@ export class ShoppingListData extends React.Component {
   setTitle = (title) => {
     const { shoppingList } = this.state;
     shoppingList.title = title;
+    this.setState({ shoppingList });
+  };
+  setId = (id) => {
+    const { shoppingList } = this.state;
+    shoppingList.id = id;
     this.setState({ shoppingList });
   };
   reset = (callBack) => {
@@ -78,6 +84,7 @@ export class ShoppingListData extends React.Component {
       reset: (callBack) => this.reset(callBack),
       removeItem: this.removeItem,
       removeStore: this.removeStore,
+      setId: (id) => this.setId(id),
     };
 
     return (
