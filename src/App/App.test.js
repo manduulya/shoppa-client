@@ -64,18 +64,6 @@ it("renders without crashing", () => {
 it("renders without crashing", () => {
   const div = document.createElement("div");
   ReactDOM.render(
-    <ShoppingListData>
-      <BrowserRouter>
-        <NewShoppingList stores={[{}]} />
-      </BrowserRouter>
-    </ShoppingListData>,
-    div
-  );
-  ReactDOM.unmountComponentAtNode(div);
-});
-it("renders without crashing", () => {
-  const div = document.createElement("div");
-  ReactDOM.render(
     <BrowserRouter>
       <ShoppingList />
     </BrowserRouter>,
