@@ -13,7 +13,7 @@ export default function LandingPage() {
           This web app will allow you to save your favorite stores and create a
           grocery shopping list
         </p>
-        <Link to="/nav">
+        <Link to="/s-list">
           {""}
           <button className="LPButton">Start</button>{" "}
         </Link>

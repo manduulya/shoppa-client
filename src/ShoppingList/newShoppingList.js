@@ -6,9 +6,9 @@ import "./newShoppingList.css";
 import { Link } from "react-router-dom";
 import cuid from "cuid";
 
+//filling the shopping list with existing content
 function fillShoppingList(data, context) {
   context.reset(() => {
-    // needs to be implemented, same way as setTitle
     context.setId(data.id);
     context.setTitle(data.title);
     for (const store of data.stores || []) {
@@ -72,6 +72,8 @@ class NewShoppingList extends React.Component {
   //Form submitting function
   formSubmitted(e) {
     e.preventDefault();
+    const edit = "id" in this.props.match.params;
+    if (edit) return;
     const s = this.context.shoppingList;
     //fetching POST request
     fetch(`${config.API_HOST}shoppinglists`, {
@@ -86,14 +88,13 @@ class NewShoppingList extends React.Component {
     })
       .then((r) => r.json())
       .then((response) => {
-        //directing to result page after POST request
-        this.props.history.push(`/s-list`);
+        this.goBack();
       });
   }
-
+  //goBack function
+  goBack = () => this.props.history.push(`/s-list`);
   render() {
     const s = this.context.shoppingList;
-    console.log(s);
     const edit = "id" in this.props.match.params;
     const renderForm = !edit || this.context.shoppingList.id;
     return (
@@ -150,11 +151,19 @@ class NewShoppingList extends React.Component {
               </button>
             </fieldset>
 
-            <button type="submit" className="newShoppingListButton">
-              Submit
-            </button>
-            <Link to="/nav">
-              <button className="newShoppingListButton grey">Back</button>
+            {!edit && (
+              <button type="submit" className="newShoppingListButton">
+                Submit
+              </button>
+            )}
+            <Link to="/s-list">
+              <button
+                type="button"
+                onClick={this.goBack}
+                className="newShoppingListButton grey"
+              >
+                Back
+              </button>
             </Link>
           </form>
         )}

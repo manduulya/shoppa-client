@@ -31,7 +31,6 @@ export default class ShoppingList extends React.Component {
 
   render() {
     const { title, items, stores } = this.context.shoppingList;
-    console.log(stores);
     return (
       <section className="ShoppingListContainer">
         <div className="ShoppingList">
@@ -57,7 +56,7 @@ export default class ShoppingList extends React.Component {
           <button className="newShoppingListButton">Back</button>
         </Link>
         <Link to={`/edit/${this.props.id}`}>
-          <button className="newShoppingListButton">Edit</button>
+          <button className="newShoppingListButton grey">Edit</button>
         </Link>
       </section>
     );

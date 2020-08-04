@@ -9,19 +9,26 @@
   text-transform: uppercase;
   border-radius: 8px;
   margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .ShoppingLists ul {
-  margin: 50px 0 0 0;
+  margin: 25px 0 0 0;
   padding: 0;
 }
 
 .ShoppingLists ul li a {
+  transition: color 0.2s ease;
   text-decoration: none;
   color: #fff;
   font-weight: 500;
 }
-.ShoppingLists button {
+.ShoppingLists ul li a:hover {
+  color: #dbdbdb;
+}
+.backButton {
   background-color: #063852;
   color: #fff;
   border-style: none;
@@ -31,6 +38,43 @@
   font-weight: 600;
   text-transform: uppercase;
   cursor: pointer;
+  transition: color 0.2s ease;
+  transition: background-color 0.2s ease;
+}
+.backButton:hover {
+  color: #061283;
+  background-color: #fff;
+}
+.AddButton {
+  transition: color 0.2s ease;
+  transition: background-color 0.2s ease;
+  width: 50px;
+  height: 50px;
+  margin: 50px 0 0 0;
+  border-style: none;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: #061283;
+}
+.AddButton:hover {
+  color: #061283;
+  background-color: #fff;
+}
+.deleteListButton {
+  transition: color 0.2s ease;
+  color: #fff;
+  border-style: none;
+  background: none;
+  cursor: pointer;
+}
+.deleteListButton:hover {
+  color: #ffdf00;
+}
+.span {
+  width: 10px;
 }
 @media only screen and (min-width: 451px) {
   .shoppingListsContainer {

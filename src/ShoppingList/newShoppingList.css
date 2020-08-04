@@ -46,6 +46,8 @@
   font-weight: 600;
   text-transform: uppercase;
   cursor: pointer;
+  transition: color 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 .storeNameInput {
   margin-bottom: 10px;

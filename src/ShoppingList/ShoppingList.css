@@ -30,6 +30,12 @@
 }
 @media only screen and (min-width: 451px) {
   .ShoppingListContainer {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+@media only screen and (min-width: 800px) {
+  .ShoppingListContainer {
     width: 60%;
     margin: 0 auto;
   }

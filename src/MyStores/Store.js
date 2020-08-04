@@ -7,12 +7,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import config from "../config";
 
+//removing an item from the server using fetch DELETE
 function removeItemServer(id) {
   return fetch(`${config.API_HOST}items/` + id, {
     method: "DELETE",
   });
 }
 
+//removing an store from the server using fetch DELETE
 function removeStoreServer(id) {
   return fetch(`${config.API_HOST}stores/` + id, {
     method: "DELETE",
@@ -32,7 +34,6 @@ export default class Store extends React.Component {
   //adding item function to
   addItem() {
     const name = this.state.nameInput.trim();
-
     if (!name) return;
 
     if (this.props.edit) {
@@ -58,8 +59,8 @@ export default class Store extends React.Component {
     this.setState({ nameInput: "" });
   }
 
+  //remove item function
   removeItem = (itemId) => {
-    console.log(itemId, this.props);
     if (this.props.edit) {
       removeItemServer(itemId).then(() =>
         this.context.removeItem(this.props.id, itemId)
@@ -69,6 +70,7 @@ export default class Store extends React.Component {
     }
   };
 
+  //remove store function
   removeStore = () => {
     if (this.props.edit) {
       removeStoreServer(this.props.id).then(() =>
